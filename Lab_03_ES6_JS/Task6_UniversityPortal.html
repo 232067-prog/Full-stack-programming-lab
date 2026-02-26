@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab Task 6 - Mini University Portal</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f0f4f8; padding: 30px; }
+        h1 { color: #2c3e50; text-align: center; }
+        .box { background: white; border-left: 5px solid #2980b9; border-radius: 8px;
+               padding: 20px; margin: 15px auto; max-width: 650px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .box h3 { color: #2980b9; margin: 0 0 10px 0; }
+        .student { background: #eaf4fb; border-radius: 6px; padding: 10px; margin: 8px 0; }
+        .student p { margin: 3px 0; color: #555; }
+        .badge { display: inline-block; background: #2980b9; color: white;
+                 padding: 2px 10px; border-radius: 12px; font-size: 12px; margin: 2px; }
+        #status { text-align: center; font-size: 16px; color: #8e44ad; margin: 10px; }
+        p { color: #555; margin: 4px 0; }
+    </style>
+</head>
+<body>
+
+    <h1>🏛️ Mini University Portal</h1>
+    <p id="status">⏳ Saving data to server...</p>
+    <div id="output"></div>
+
+    <script>
+
+        // ===== CLASS =====
+        class Student {
+            constructor(id, name, semester) {
+                this.id = id;
+                this.name = name;
+                this.semester = semester;
+            }
+        }
+
+        // ===== MAP - Store students =====
+        const studentMap = new Map();
+
+        const st1 = new Student("S01", "Ali Hassan",   "6th");
+        const st2 = new Student("S02", "Sara Khan",    "4th");
+        const st3 = new Student("S03", "Usman Malik",  "2nd");
+
+        studentMap.set(st1.id, st1);
+        studentMap.set(st2.id, st2);
+        studentMap.set(st3.id, st3);
+
+        // ===== SET - Register unique courses =====
+        const courseSet = new Set();
+        courseSet.add("Full Stack Programming");
+        courseSet.add("Database Management");
+        courseSet.add("Artificial Intelligence");
+        courseSet.add("Full Stack Programming"); // duplicate - ignored
+        courseSet.add("Web Development");
+
+        // ===== PROMISE - Simulate saving data =====
+        function saveData() {
+            return new Promise(function(resolve, reject) {
+                setTimeout(function() {
+                    const success = true; // change to false to simulate error
+                    if (success) {
+                        resolve("✅ Data saved to university server successfully!");
+                    } else {
+                        reject("❌ Failed to save data!");
+                    }
+                }, 2000);
+            });
+        }
+
+        // Display students from Map
+        let studentCards = "";
+        studentMap.forEach((student, id) => {
+            studentCards += `
+                <div class="student">
+                    <p><strong>ID:</strong> ${student.id}</p>
+                    <p><strong>Name:</strong> ${student.name}</p>
+                    <p><strong>Semester:</strong> ${student.semester}</p>
+                </div>
+            `;
+        });
+
+        // Display courses from Set
+        let courseBadges = "";
+        for (let course of courseSet) {
+            courseBadges += `<span class="badge">${course}</span> `;
+        }
+
+        document.getElementById("output").innerHTML = `
+            <div class="box">
+                <h3>👥 Students (stored in Map)</h3>
+                ${studentCards}
+                <p><strong>Total Students:</strong> ${studentMap.size}</p>
+            </div>
+            <div class="box">
+                <h3>📚 Registered Courses (Set — no duplicates)</h3>
+                <p>${courseBadges}</p>
+                <p><strong>Total Unique Courses:</strong> ${courseSet.size}</p>
+            </div>
+        `;
+
+        // Run Promise
+        saveData()
+            .then(function(msg) {
+                document.getElementById("status").innerHTML = msg;
+            })
+            .catch(function(err) {
+                document.getElementById("status").innerHTML = err;
+            });
+
+    </script>
+
+</body>
+</html>

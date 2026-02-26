@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab Task 4 - Course Registration (Set)</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f0f4f8; padding: 30px; }
+        h1 { color: #2c3e50; text-align: center; }
+        .box { background: white; border-left: 5px solid #27ae60; border-radius: 8px;
+               padding: 20px; margin: 15px auto; max-width: 600px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .box h3 { color: #27ae60; margin: 0 0 10px 0; }
+        .badge { display: inline-block; background: #27ae60; color: white;
+                 padding: 3px 12px; border-radius: 12px; font-size: 13px; margin: 3px; }
+        .dup { background: #e74c3c; }
+        p { color: #555; margin: 5px 0; }
+    </style>
+</head>
+<body>
+
+    <h1>📚 Unique Course Registration System</h1>
+    <div id="output"></div>
+
+    <script>
+        // Set stores unique values only
+        const registeredCourses = new Set();
+
+        // Add courses dynamically
+        registeredCourses.add("Full Stack Programming");
+        registeredCourses.add("Database Management");
+        registeredCourses.add("Object Oriented Programming");
+        registeredCourses.add("Artificial Intelligence");
+        registeredCourses.add("Web Development");
+
+        // Attempt adding duplicate courses
+        registeredCourses.add("Full Stack Programming");  // duplicate - won't be added
+        registeredCourses.add("Database Management");     // duplicate - won't be added
+
+        // Loop through Set using for...of
+        let courseList = "";
+        for (let course of registeredCourses) {
+            courseList += `<span class="badge">${course}</span> `;
+        }
+
+        // Duplicate attempts display
+        const duplicates = ["Full Stack Programming", "Database Management"];
+        let dupList = duplicates.map(d => `<span class="badge dup">${d} (Duplicate - Ignored)</span>`).join(" ");
+
+        // Display in HTML
+        document.getElementById("output").innerHTML = `
+            <div class="box">
+                <h3>✅ Registered Courses</h3>
+                <p>${courseList}</p>
+            </div>
+            <div class="box">
+                <h3>🔢 Total Unique Courses</h3>
+                <p><strong>Total: ${registeredCourses.size} courses</strong></p>
+            </div>
+            <div class="box">
+                <h3>❌ Duplicate Attempts (Ignored by Set)</h3>
+                <p>${dupList}</p>
+            </div>
+        `;
+    </script>
+
+</body>
+</html>

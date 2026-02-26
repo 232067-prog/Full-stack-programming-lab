@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab Task 5 - Product Catalog (Map)</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f0f4f8; padding: 30px; }
+        h1 { color: #2c3e50; text-align: center; }
+        .box { background: white; border-left: 5px solid #e67e22; border-radius: 8px;
+               padding: 20px; margin: 15px auto; max-width: 600px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .box h3 { color: #e67e22; margin: 0 0 10px 0; }
+        .product { background: #fff8f0; border-radius: 6px; padding: 10px; margin: 8px 0; }
+        .product p { margin: 3px 0; color: #555; }
+        .highlight { background: #ffeaa7; border-left: 4px solid #f39c12; padding: 10px; border-radius: 4px; }
+        p { color: #555; }
+    </style>
+</head>
+<body>
+
+    <h1>🛍️ Product Catalog</h1>
+    <div id="output"></div>
+
+    <script>
+        // Map: Key = Product ID, Value = Product Object
+        const productMap = new Map();
+
+        // Add 5 products
+        productMap.set("P001", { name: "Laptop",     price: 85000, category: "Electronics" });
+        productMap.set("P002", { name: "Mouse",      price: 1500,  category: "Accessories" });
+        productMap.set("P003", { name: "Keyboard",   price: 3500,  category: "Accessories" });
+        productMap.set("P004", { name: "Monitor",    price: 35000, category: "Electronics" });
+        productMap.set("P005", { name: "Headphones", price: 5000,  category: "Audio"       });
+
+        // Search by ID
+        const searchId = "P003";
+        const foundProduct = productMap.get(searchId);
+
+        // Delete a product
+        productMap.delete("P002");
+
+        // Display all products
+        let allProducts = "";
+        productMap.forEach((product, id) => {
+            allProducts += `
+                <div class="product">
+                    <p><strong>ID:</strong> ${id}</p>
+                    <p><strong>Name:</strong> ${product.name}</p>
+                    <p><strong>Price:</strong> Rs. ${product.price}</p>
+                    <p><strong>Category:</strong> ${product.category}</p>
+                </div>
+            `;
+        });
+
+        document.getElementById("output").innerHTML = `
+            <div class="box">
+                <h3>📦 All Products (after delete)</h3>
+                ${allProducts}
+            </div>
+            <div class="box">
+                <h3>🔍 Search Result — ID: ${searchId}</h3>
+                <div class="highlight">
+                    <p><strong>Name:</strong> ${foundProduct.name}</p>
+                    <p><strong>Price:</strong> Rs. ${foundProduct.price}</p>
+                    <p><strong>Category:</strong> ${foundProduct.category}</p>
+                </div>
+            </div>
+            <div class="box">
+                <h3>🔢 Total Products</h3>
+                <p><strong>${productMap.size} products</strong> in catalog (Mouse deleted)</p>
+            </div>
+        `;
+    </script>
+
+</body>
+</html>
