@@ -21,24 +21,19 @@
     <div id="output"></div>
 
     <script>
-        // Map: Key = Product ID, Value = Product Object
+        
         const productMap = new Map();
-
-        // Add 5 products
         productMap.set("P001", { name: "Laptop",     price: 85000, category: "Electronics" });
         productMap.set("P002", { name: "Mouse",      price: 1500,  category: "Accessories" });
         productMap.set("P003", { name: "Keyboard",   price: 3500,  category: "Accessories" });
         productMap.set("P004", { name: "Monitor",    price: 35000, category: "Electronics" });
         productMap.set("P005", { name: "Headphones", price: 5000,  category: "Audio"       });
-
-        // Search by ID
         const searchId = "P003";
         const foundProduct = productMap.get(searchId);
 
-        // Delete a product
         productMap.delete("P002");
 
-        // Display all products
+       
         let allProducts = "";
         productMap.forEach((product, id) => {
             allProducts += `

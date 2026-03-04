@@ -25,7 +25,7 @@
 
     <script>
 
-        // ===== CLASS =====
+        
         class Student {
             constructor(id, name, semester) {
                 this.id = id;
@@ -34,7 +34,7 @@
             }
         }
 
-        // ===== MAP - Store students =====
+       
         const studentMap = new Map();
 
         const st1 = new Student("S01", "Ali Hassan",   "6th");
@@ -45,19 +45,19 @@
         studentMap.set(st2.id, st2);
         studentMap.set(st3.id, st3);
 
-        // ===== SET - Register unique courses =====
+        
         const courseSet = new Set();
         courseSet.add("Full Stack Programming");
         courseSet.add("Database Management");
         courseSet.add("Artificial Intelligence");
-        courseSet.add("Full Stack Programming"); // duplicate - ignored
+        courseSet.add("Full Stack Programming"); 
         courseSet.add("Web Development");
 
-        // ===== PROMISE - Simulate saving data =====
+       
         function saveData() {
             return new Promise(function(resolve, reject) {
                 setTimeout(function() {
-                    const success = true; // change to false to simulate error
+                    const success = true; 
                     if (success) {
                         resolve("✅ Data saved to university server successfully!");
                     } else {

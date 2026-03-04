@@ -31,21 +31,18 @@
         registeredCourses.add("Artificial Intelligence");
         registeredCourses.add("Web Development");
 
-        // Attempt adding duplicate courses
-        registeredCourses.add("Full Stack Programming");  // duplicate - won't be added
-        registeredCourses.add("Database Management");     // duplicate - won't be added
+       
+        registeredCourses.add("Full Stack Programming");  
+        registeredCourses.add("Database Management");     
 
-        // Loop through Set using for...of
+        
         let courseList = "";
         for (let course of registeredCourses) {
             courseList += `<span class="badge">${course}</span> `;
         }
-
-        // Duplicate attempts display
+        
         const duplicates = ["Full Stack Programming", "Database Management"];
         let dupList = duplicates.map(d => `<span class="badge dup">${d} (Duplicate - Ignored)</span>`).join(" ");
-
-        // Display in HTML
         document.getElementById("output").innerHTML = `
             <div class="box">
                 <h3>✅ Registered Courses</h3>
