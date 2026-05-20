@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Task 2 — Animated Image Gallery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body{font-family:Inter,system-ui,Arial;background:#f7f9fb;margin:0;color:#111}
+    .wrap{max-width:820px;margin:48px auto;padding:20px;background:#fff;border-radius:8px;box-shadow:0 6px 24px rgba(16,24,40,.06)}
+    .gallery{position:relative;overflow:hidden;border-radius:8px}
+    .gallery img{width:100%;height:420px;object-fit:cover;display:block}
+    .controls{display:flex;justify-content:space-between;align-items:center;padding:12px}
+    .btn{background:#2563eb;color:#fff;padding:8px 12px;border-radius:6px;border:0;cursor:pointer}
+    .caption{padding:10px;color:#374151}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1 style="margin:0 0 8px">Animated Image Gallery</h1>
+    <div class="gallery">
+      <img id="mainImg" src="https://picsum.photos/id/1015/1200/600" alt="" />
+    </div>
+    <div class="controls">
+      <button id="prev" class="btn">Previous</button>
+      <div class="caption" id="caption">Image 1 — Mountain</div>
+      <button id="next" class="btn">Next</button>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(function(){
+      const images = [
+        {src:'https://picsum.photos/id/1015/1200/600', caption:'Mountain'},
+        {src:'https://picsum.photos/id/1025/1200/600', caption:'Dog portrait'},
+        {src:'https://picsum.photos/id/1035/1200/600', caption:'Forest lake'},
+        {src:'https://picsum.photos/id/1043/1200/600', caption:'City skyline'}
+      ];
+      let idx=0;
+      function show(i){
+        idx = (i+images.length)%images.length;
+        $('#mainImg').fadeOut(300,function(){
+          $(this).attr('src',images[idx].src).fadeIn(300);
+        });
+        $('#caption').fadeOut(200,function(){ $(this).text('Image '+(idx+1)+' — '+images[idx].caption).fadeIn(200); });
+      }
+      $('#next').on('click',()=> show(idx+1));
+      $('#prev').on('click',()=> show(idx-1));
+    });
+  </script>
+</body>
+</html>

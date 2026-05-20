@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Task 4 — Tabbed Content with Smooth Scroll</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body{font-family:Inter,system-ui,Arial;background:#f7f9fb;margin:0;color:#111}
+    .wrap{max-width:900px;margin:40px auto;padding:20px;background:#fff;border-radius:8px;box-shadow:0 6px 24px rgba(16,24,40,.06)}
+    .tabs{display:flex;gap:8px;margin-bottom:16px}
+    .tab{padding:8px 12px;border-radius:8px;border:1px solid #e6edf3;cursor:pointer;background:#fff}
+    .tab.active{background:#2563eb;color:#fff}
+    .panel{padding:18px;border-radius:8px;border:1px solid #eef3fb;margin-bottom:12px;background:#fbfdff}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1 style="margin:0 0 12px">Tabbed Content with Smooth Scroll</h1>
+    <div class="tabs" id="tabs"></div>
+    <div id="content"></div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(function(){
+      const items = [
+        {title:'Overview',text:'Overview content with summary and intro.'},
+        {title:'Details',text:'Detailed explanation and steps.'},
+        {title:'Examples',text:'Some usage examples and code.'},
+        {title:'Resources',text:'Links and references.'},
+        {title:'FAQ',text:'Common questions answered.'}
+      ];
+      items.forEach((it,i)=>{
+        $('#tabs').append($('<div class="tab">').text(it.title).attr('data-i',i));
+        $('#content').append($('<div class="panel">').attr('id','panel-'+i).html('<h3>'+it.title+'</h3><p>'+it.text+'</p>').hide());
+      });
+      function activate(i){
+        $('.tab').removeClass('active').filter('[data-i="'+i+'"]').addClass('active');
+        $('.panel').hide().eq(i).fadeIn(300);
+        $('html,body').animate({scrollTop:$('#panel-'+i).offset().top - 20},300);
+      }
+      $('#tabs').on('click','.tab',function(){ activate($(this).data('i')); });
+      activate(0);
+    });
+  </script>
+</body>
+</html>

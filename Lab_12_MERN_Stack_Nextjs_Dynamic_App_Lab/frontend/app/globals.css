@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-ink: #3b2f2a;
+  --color-ink-soft: #5f4a40;
+  --color-sand: #f3ece2;
+  --color-cream: #f7f2ea;
+  --color-accent: #f27c2b;
+  --color-accent-dark: #d86316;
+  --color-olive: #8a7e6a;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-body), "Segoe UI", sans-serif;
+    color: var(--color-ink);
+    background: radial-gradient(circle at top, #f9f5ef 0%, #efe7dc 55%, #e8dccd 100%);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display), "Times New Roman", serif;
+    letter-spacing: 0.02em;
+  }
+}
+
+@layer components {
+  .site-shell {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .page-section {
+    padding: 3.5rem 1.5rem;
+  }
+
+  .section-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .section-title {
+    font-size: 1.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+
+  .accent-bar {
+    height: 4px;
+    width: 90px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--color-accent), transparent);
+  }
+
+  .glass-card {
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.78);
+    box-shadow: 0 20px 50px rgba(28, 18, 12, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    padding: 0.35rem 0.9rem;
+    background: #fdf8f2;
+    border: 1px solid rgba(210, 192, 176, 0.6);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 999px;
+    background: var(--color-accent);
+    color: white;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 20px rgba(242, 124, 43, 0.35);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@keyframes float-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-right {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-float-in {
+  animation: float-in 0.8s ease both;
+}
+
+.animate-slide-right {
+  animation: slide-right 0.7s ease both;
+}

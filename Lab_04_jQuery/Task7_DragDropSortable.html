@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Task 7 — Drag-and-Drop Sortable List</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body{font-family:Inter,system-ui,Arial;background:#f7f9fb;margin:0;color:#111}
+    .wrap{max-width:640px;margin:48px auto;padding:24px;background:#fff;border-radius:8px;box-shadow:0 6px 24px rgba(16,24,40,.06)}
+    ul{list-style:none;padding:0;margin:0}
+    li{padding:12px;margin-bottom:8px;border-radius:8px;border:1px solid #eef3fb;background:#fbfdff;cursor:grab}
+    li.dragging{opacity:.6;background:#fef3c7}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1 style="margin:0 0 8px">Drag-and-Drop Sortable List</h1>
+    <p style="color:#6b7280;margin-top:0">Drag items to reorder. Order updates live in console.</p>
+    <ul id="list">
+      <li draggable="true">Item A</li>
+      <li draggable="true">Item B</li>
+      <li draggable="true">Item C</li>
+      <li draggable="true">Item D</li>
+    </ul>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(function(){
+      let dragged=null;
+      $('#list').on('dragstart','li',function(e){ dragged=this; $(this).addClass('dragging'); e.originalEvent.dataTransfer.effectAllowed='move'; })
+        .on('dragend','li',function(){ $(this).removeClass('dragging'); dragged=null; logOrder(); })
+        .on('dragover','li',function(e){ e.preventDefault(); const $this=$(this); if(this===dragged) return; const rect=this.getBoundingClientRect(); const mid=(rect.top+rect.bottom)/2; if(e.originalEvent.clientY>mid) $this.after(dragged); else $this.before(dragged); })
+        .on('drop',function(e){ e.preventDefault(); });
+
+      function logOrder(){ const order = $('#list li').map(function(){ return $(this).text(); }).get(); console.log('Order:',order); }
+    });
+  </script>
+</body>
+</html>

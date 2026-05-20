@@ -1,0 +1,160 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700&family=Space+Grotesk:wght@600;700&display=swap");
+
+:root {
+  --bg: #f5f2ea;
+  --surface: #fffdf8;
+  --text: #202224;
+  --muted: #5d636b;
+  --brand: #0b6e4f;
+  --brand-deep: #084c38;
+  --accent: #ff9f1c;
+  --border: #d9d2c7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Outfit", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 15% 15%, #fff7e6 0%, transparent 30%),
+    radial-gradient(circle at 80% 5%, #d8efe7 0%, transparent 28%),
+    var(--bg);
+}
+
+.page-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+}
+
+.site-header {
+  border-bottom: 1px solid var(--border);
+  background: rgba(255, 253, 248, 0.9);
+  backdrop-filter: blur(8px);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.header-content {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.brand {
+  text-decoration: none;
+  color: var(--brand-deep);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.02em;
+}
+
+.main-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 999px;
+  transition: all 0.25s ease;
+}
+
+.nav-link:hover {
+  background: #e7f4ef;
+  color: var(--brand-deep);
+}
+
+.page-content {
+  flex: 1;
+  padding: 36px 0 56px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Space Grotesk", sans-serif;
+  margin: 0 0 12px;
+  line-height: 1.2;
+}
+
+p {
+  margin: 0 0 14px;
+  color: var(--muted);
+}
+
+.action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.btn-link {
+  text-decoration: none;
+  display: inline-block;
+  background: var(--brand);
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-weight: 600;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.btn-link:hover {
+  background: var(--brand-deep);
+  transform: translateY(-1px);
+}
+
+.btn-link.secondary {
+  background: var(--accent);
+  color: #23180a;
+}
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  background: #fffdf8;
+}
+
+.footer-content {
+  min-height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.footer-content p {
+  margin: 0;
+  color: #6b6f75;
+}
+
+@media (max-width: 680px) {
+  .header-content {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 12px 0;
+  }
+
+  .page-content {
+    padding-top: 24px;
+  }
+}

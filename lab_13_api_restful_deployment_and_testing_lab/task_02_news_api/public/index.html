@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>News Headlines API</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="card">
+        <header class="card-header">
+          <p class="eyebrow">News API</p>
+          <h1>Top Headlines</h1>
+          <p class="subtitle">
+            Retrieve the latest top stories by country code with a clean JSON API.
+          </p>
+        </header>
+        <form id="news-form" class="form">
+          <label class="field">
+            <span>Country code</span>
+            <input
+              id="country-input"
+              name="country"
+              type="text"
+              placeholder="us"
+              maxlength="2"
+              required
+              autocomplete="off"
+            />
+          </label>
+          <button class="button" type="submit">Get headlines</button>
+        </form>
+        <section class="result" id="news-result" aria-live="polite">
+          <p class="muted">Enter a two-letter country code to load headlines.</p>
+        </section>
+      </section>
+      <footer class="footer">REST API + Express | Task 7.2</footer>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>

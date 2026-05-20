@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Weather Forecast API</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="card">
+        <header class="card-header">
+          <p class="eyebrow">Weather API</p>
+          <h1>City Forecast</h1>
+          <p class="subtitle">
+            Get live temperature, condition, and humidity from the OpenWeather service.
+          </p>
+        </header>
+        <form id="weather-form" class="form">
+          <label class="field">
+            <span>City name</span>
+            <input
+              id="city-input"
+              name="city"
+              type="text"
+              placeholder="e.g., Dubai"
+              required
+              autocomplete="off"
+            />
+          </label>
+          <button class="button" type="submit">Check weather</button>
+        </form>
+        <section class="result" id="weather-result" aria-live="polite">
+          <p class="muted">Enter a city to see live conditions.</p>
+        </section>
+      </section>
+      <footer class="footer">REST API + Express | Task 7.1</footer>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
